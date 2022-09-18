@@ -34,11 +34,11 @@ const controller = {
 	// Create -  Method to store
 	store: (req, res) => {
 		// Do the magic
-		const{name,price,discount,description,category} = req.body;
+		const{name,price,discount,description,category} = req.body
 		const products = loadProducts();
 
 		const newProduct = {
-			id : (products[products.length - 1].id),
+			id : (products[products.length - 1].id + 1),
 			name : name.trim(),
 			description : description.trim(),
 			price : +price,
@@ -47,8 +47,8 @@ const controller = {
 			category 
 		}
 
-		const productModify = [...products, newProduct];
-		storeProducts(productModify);
+		const productsModify = [...products, newProduct];
+		storeProducts(productsModify);
 
 		return res.redirect('/products')
 	},
