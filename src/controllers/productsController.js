@@ -43,7 +43,7 @@ const controller = {
 			description : description.trim(),
 			price : +price,
 			discount : +discount,
-			image : 'default-image.png',
+			image : req.file ? req.file.filename : 'default-image.png',
 			category 
 		}
 
@@ -66,7 +66,7 @@ const controller = {
 	update: (req, res) => {
 		// Do the magic
 		const products = loadProducts()
-		const {name,price,discount,category,description} = req.body;
+		const {name,price,discount,description,category} = req.body;
 		const productModify = products.map(product => {
 			if(product.id === +req.params.id){
 				return{

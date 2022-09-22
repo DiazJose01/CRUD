@@ -2,6 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
+// ************ middlewares require ************
+const {uploadImageProduct} = require('../middlewares/uploadFiles'); 
+
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
 
@@ -10,7 +13,7 @@ router.get('/', productsController.index);
 
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create/', productsController.create); 
-router.post('/store', productsController.store); 
+router.post('/store', uploadImageProduct.single('image', 3), productsController.store); 
 
 
 /*** GET ONE PRODUCT ***/ 
